@@ -1,0 +1,10 @@
+FROM mcr.microsoft.com/playwright:v1.34.0-focal
+
+WORKDIR /tests
+COPY package.json package-lock.json ./
+RUN npm ci
+
+COPY . .
+
+# By default, this container runs tests. Adjust command as necessary.
+CMD ["npm", "run", "test"]
